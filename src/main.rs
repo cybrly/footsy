@@ -13,6 +13,8 @@ use nonzero_ext::nonzero;
 use tokio::net::TcpStream;
 use tokio::sync::{Mutex, Semaphore};
 use tokio::time::timeout;
+use regex::Regex;
+
 
 #[derive(Parser)]
 struct Cli {
@@ -158,12 +160,15 @@ async fn check_web_server(url: &str) -> Result<ScanResult, Box<dyn std::error::E
 
 fn extract_title(body: &[u8]) -> String {
     let body_str = String::from_utf8_lossy(body);
-    body_str
-        .split("<title>")
-        .nth(1)
-        .and_then(|s| s.split("</title>").next())
-        .unwrap_or("No Title Found")
-        .to_string()
+    
+    // Regular expression to match the title tag content
+    let title_re = Regex::new(r"(?i)<title[^>]*>(.*?)</title>").unwrap();
+    
+    if let Some(captures) = title_re.captures(&body_str) {
+        return captures.get(1).map_or("No Title Found".to_string(), |m| m.as_str().to_string());
+    }
+
+    "No Title Found".to_string()
 }
 
 #[derive(Debug)]

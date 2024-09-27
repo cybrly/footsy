@@ -557,6 +557,7 @@ dependencies = [
  "local_ipaddress",
  "nonzero_ext",
  "ohttp",
+ "regex",
  "surge-ping",
  "tokio",
 ]

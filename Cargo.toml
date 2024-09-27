@@ -1,7 +1,12 @@
 [package]
 name = "footsy"
-version = "0.1.0"
+version = "0.1.1"
+authors = ["Chris Neuwirth <cneuwirth@networksgroup.com"]
 edition = "2021"
+license = "MIT"
+description = "A command-line utility to scan networks for web servers and display their status."
+repository = "https://github.com/cybrly/footsy"
+
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
@@ -17,3 +22,4 @@ nonzero_ext = "0.3"
 surge-ping = "0.8"
 crossterm = "0.27"
 ohttp = "0.4"
+regex = "1"
