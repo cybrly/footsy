@@ -1,0 +1,19 @@
+[package]
+name = "footsy"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+hyper = { version = "0.14", features = ["full"] }
+hyper-rustls = { version = "0.23", features = ["http1", "http2", "native-tokio"] }
+local_ipaddress = "0.1"
+colored = "2.1"
+futures = "0.3"
+clap = { version = "4.0", features = ["derive"] }
+indicatif = "0.17"
+governor = "0.4"
+nonzero_ext = "0.3"
+surge-ping = "0.8"
+crossterm = "0.27"
+ohttp = "0.4"
